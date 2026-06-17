@@ -5,7 +5,8 @@ import _curry2 from './internal/_curry2.js';
  * Runs `console.log` with the supplied label and value, then returns the value.
  *
  * Useful for debugging within a pipeline, allowing inspection of intermediate
- * values without breaking the chain. The output format is `[label] value`.
+ * values without breaking the chain. The output format is
+ * `tapLog label: value`.
  *
  * @func
  * @memberOf R
@@ -18,19 +19,19 @@ import _curry2 from './internal/_curry2.js';
  * @example
  *
  *      R.tapLog('value', 42); //=> 42
- *      // logs: [value] 42
+ *      // logs: tapLog value: 42
  *
  *      R.pipe(
  *        R.map(R.inc),
  *        R.tapLog('after inc'),
  *        R.filter(x => x > 2)
  *      )([1, 2, 3]);
- *      // logs: [after inc] [2, 3, 4]
+ *      // logs: tapLog after inc: [2, 3, 4]
  *      //=> [3, 4]
- * @symb R.tapLog(label, a) = (console.log('[' + label + ']', a), a)
+ * @symb R.tapLog(label, a) = (console.log('tapLog ' + label + ':', a), a)
  */
 var tapLog = _curry2(function tapLog(label, x) {
-  console.log('[' + label + ']', x);
+  console.log('tapLog ' + label + ':', x);
   return x;
 });
 export default tapLog;
